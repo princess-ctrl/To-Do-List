@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>My To-Do List</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js
+"></script>
+</head>
+<body>
+<div class="toDo-container">
+	<h1>My To-Do list</h1>
+	<div class="input">
+		<input type="text" class="form-control" placeholder="New Item" name="">
+		<div class="add"><i class="fa fa-plus"></i></div>
+	</div>
+	<ul class="myList">
+		</ul>
+<script>
+ $(document).ready(function() {
+ 	var count = 0;
+	$(".add").on("click", function(){
+	   var val = $(".form-control").val();
+	   if (val != '') {
+	   	count ++;
+	   $(".myList").append('<li><div class="left-cont"><input type="checkbox" id="check-'+count+'" name=""><label for="check-'+count+'"></label><span>'+val+'</span></div><span class="remove"><i class="fa fa-trash"></i></span></li>');
+	}
+	$(".form-control").val('');
+})
+    $(document).on('change', 'input[type="checkbox"]', function() {
+    	if ($(this).is(':checked')) {
+    		$(this).closest("li").children(".remove").addClass("active");
+    	}else {
+    		$(this).closest("li").children(".remove").removeClass("active");
+    	}
+    })
+    $(document).on("click", '.remove', function(){
+    	$(this).parent().remove();
+    })
+	})
+</script>
+</body>
+</html>
